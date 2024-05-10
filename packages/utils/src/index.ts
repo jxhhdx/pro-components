@@ -16,7 +16,7 @@ import { proxyToRaw } from "./proxyToRaw";
 export { proxyToRaw };
 
 // type
-import {
+import type {
   VueNode,
   ProFieldFCMode,
   VueText,

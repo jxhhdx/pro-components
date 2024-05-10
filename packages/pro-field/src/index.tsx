@@ -30,9 +30,9 @@ import {
   proFieldFC,
   proFieldFCRenderProps,
   type ProFieldFCRenderProps,
-  ProFieldFC,
-  BaseProFieldFC,
-  ProRenderFieldPropsType,
+  type ProFieldFC,
+  type BaseProFieldFC,
+  type ProRenderFieldPropsType,
 } from './components/typings';
 
 export {
@@ -358,7 +358,7 @@ const ProField = defineComponent({
 });
 
 ProField.install = (app: App) => {
-  app.component(ProField.name, ProField);
+  app.component(ProField.name as string, ProField);
   return app;
 };
 
