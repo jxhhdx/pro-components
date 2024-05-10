@@ -42,7 +42,9 @@
     "vuex": "^4.0.0"
   },
   "scripts": {
-    "dev": "node ./scripts/genrateRoutes.js && vite"
+    "dev": "node ./scripts/genrateRoutes.js && vite",
+    "routes": "node site/scripts/genrateRoutes.js",
+    "build": "vite build"
   },
   "keywords": [],
   "author": "",

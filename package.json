@@ -13,7 +13,9 @@
     "build": "pnpm run build --filter ./packages",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "TIMING=1 eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "dev": "pnpm --filter \"site\" dev",
+    "build:docs": "pnpm --filter \"./site\" build"
   },
   "keywords": [
     "antd",
