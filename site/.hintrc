@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "@-ms-viewport",
+          "-webkit-text-size-adjust",
+          "@-ms-viewport"
+        ]
+      }
+    ]
+  }
+}

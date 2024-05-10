@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@ant-design-vue/pro-utils": ["../packages/utils"],
+      "@ant-design-vue/pro-table": ["../packages/pro-table"],
+      "@ant-design-vue/pro-layout": ["../packages/pro-layout"],
+      "@ant-design-vue/pro-form": ["../packages/pro-form"],
+      "@ant-design-vue/pro-field": ["../packages/pro-field"],
+    },
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "strictNullChecks": false,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "jsx": "preserve",
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": false,
+    "target": "esnext",
+    "module": "esnext",
+    "skipLibCheck": true,
+    "allowJs": true,
+    "importsNotUsedAsValues": "preserve"
+  },
+  "exclude": ["node_modules", "lib", "es", "dist", "v2-doc", "scripts", "**/__tests__/**/*"]
+}
