@@ -6,7 +6,6 @@ import {
     type Plugin,
     type DefineComponent,
     watch,
-    toRaw
 } from 'vue';
 import { Form } from 'ant-design-vue';
 import { SearchOutlined, UndoOutlined } from '@ant-design/icons-vue';
@@ -99,7 +98,7 @@ const BaseForm = defineComponent({
 });
 
 BaseForm.install = (app: App) => {
-    app.component(BaseForm.name, BaseForm);
+    app.component(BaseForm.name as string, BaseForm);
     return app;
 };
 
