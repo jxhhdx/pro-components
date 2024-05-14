@@ -1,5 +1,5 @@
 import { defineComponent, type App, DefineComponent, Plugin } from 'vue';
-import { field______Props, Field______Props } from './types';
+import { fieldDigitProps, FieldDigitProps } from './types';
 import { getSlot } from '@ant-design-vue/pro-utils';
 import type { VueNode } from 'ant-design-vue/lib/_util/type';
 
@@ -14,10 +14,10 @@ export const slots = [
   'monthCellRender',
 ];
 
-const Field______ = defineComponent({
-  name: 'Field______',
+const FieldDigit = defineComponent({
+  name: 'FieldDigit',
   inheritAttrs: false,
-  props: field______Props,
+  props: fieldDigitProps,
   slots,
   setup(props, { slots }) {
     const suffixIcon = getSlot<() => VueNode>(slots, props.fieldProps as Record<string, any>, 'suffixIcon');
@@ -59,9 +59,9 @@ const Field______ = defineComponent({
   },
 });
 
-Field______.install = (app: App) => {
-  app.component(Field______.name as string, Field______);
+FieldDigit.install = (app: App) => {
+  app.component(FieldDigit.name as string, FieldDigit);
   return app;
 };
 
-export default Field______ as DefineComponent<Field______Props> & Plugin;
+export default FieldDigit as DefineComponent<FieldDigitProps> & Plugin;

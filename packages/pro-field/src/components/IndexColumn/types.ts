@@ -1,8 +1,8 @@
 import type { ExtractPropTypes } from 'vue';
 import { proFieldFC } from '../typings';
 
-export const field______Props = {
+export const fieldIndexColumnProps = {
   ...proFieldFC,
 };
 
-export type Field______Props = Partial<ExtractPropTypes<typeof field______Props>>;
+export type FieldIndexColumnProps = Partial<ExtractPropTypes<typeof fieldIndexColumnProps>>;
