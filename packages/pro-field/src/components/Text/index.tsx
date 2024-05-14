@@ -40,7 +40,7 @@ const FieldText = defineComponent({
 });
 
 FieldText.install = (app: App) => {
-  app.component(FieldText.name, FieldText);
+  app.component(FieldText.name as string, FieldText);
   return app;
 };
 

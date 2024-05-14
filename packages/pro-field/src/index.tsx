@@ -116,6 +116,29 @@ const defaultRenderText = (
   props: RenderProps
   // valueTypeMap: Record<string, ProRenderFieldPropsType>
 ): VueNode => {
+  const { mode = 'read', emptyText = '-' } = props;
+
+  if (
+    emptyText !== false &&
+    mode === 'read' &&
+    valueType !== 'option' &&
+    valueType !== 'switch'
+  ) {
+    if (
+      typeof dataValue !== 'boolean' &&
+      typeof dataValue !== 'number' &&
+      !dataValue
+    ) {
+      const { fieldProps, render } = props;
+      if (render) {
+        return render(dataValue, { mode, ...fieldProps }, <>{emptyText}</>);
+      }
+      return <>{emptyText}</>;
+    }
+  }
+
+  delete props.emptyText;
+
   // 日期
   if (valueType === 'date') {
     const { fieldProps } = props;
@@ -304,18 +327,8 @@ const ProField = defineComponent({
       const { readonly, mode, text, valueType, formItemProps, fieldProps, renderFormItem } = props;
       const formItemName = formItemProps?.name as VueText;
       const formModel = formItemProps?.model;
-      if (!formModel) {
-        warning(false, 'model is required for validateFields to work.');
-        return Promise.reject('Form `model` is required for validateFields to work.');
-      }
-      const modelValue = formModel[formItemName];
+      const modelValue = formModel?.[formItemName];
 
-      if (!(formItemName in Object.keys(formModel))) {
-        warning(
-          false,
-          `The ${formItemName} attribute was not found in the model of the Form, Please set the name attribute of the form item correctly`
-        );
-      }
       const inputValue = ref(modelValue);
       const omitFormItemProps = omitUndefined(formItemProps || {});
 
@@ -328,31 +341,30 @@ const ProField = defineComponent({
           fieldProps?.['onUpdate:value']?.(value);
         },
       });
-      return (
-        <>
-          {defaultRenderText(
-            mode === 'edit' ? omitFieldProps?.value ?? text ?? '' : text ?? omitFieldProps?.value ?? '',
-            valueType || 'text',
-            {
-              ...props,
-              mode: readonly ? 'read' : mode,
-              renderFormItem: renderFormItem
-                ? (...restProps) => {
-                    const newDom = renderFormItem?.(...restProps) as VNode | JSX.Element;
-                    if (isValidElement(newDom))
-                      return cloneVNodes(newDom, {
-                        ...omitFieldProps,
-                        ...((newDom.props as any) || {}),
-                      });
-                    return newDom;
-                  }
-                : undefined,
-              fieldProps: pickProProps(omitFieldProps || {}),
-              formItemProps: pickProProps(omitFormItemProps || {}),
-            }
-          )}
-        </>
-      );
+      const renderedDom = defaultRenderText(
+        mode === 'edit' 
+          ? omitFieldProps?.value ?? text ?? '' 
+          : text ?? omitFieldProps?.value ?? '',
+        valueType || 'text',
+        {
+          ...props,
+          mode: readonly ? 'read' : mode,
+          renderFormItem: renderFormItem
+            ? (...restProps) => {
+                const newDom = renderFormItem?.(...restProps) as VNode | JSX.Element;
+                if (isValidElement(newDom))
+                  return cloneVNodes(newDom, {
+                    ...omitFieldProps,
+                    ...((newDom.props as any) || {}),
+                  });
+                return newDom;
+              }
+            : undefined,
+          fieldProps: pickProProps(omitFieldProps || {}),
+          formItemProps: pickProProps(omitFormItemProps || {}),
+        }
+      )
+      return <>{renderedDom}</>;
     };
   },
 });
