@@ -17,27 +17,34 @@ Basic usage methods
 </docs>
 
 <template>
-  <PageContainer fixed-header title="Example">
-    <template #tags>
-      <Tag>tag1</Tag>
-      <Tag color="pink">tag2</Tag>
-    </template>
-    <Result
-      status="404"
-      :style="{
-        height: '100%',
-      }"
-      title="Hello World"
-      sub-title="Sorry, you are not authorized to access this page."
-    >
-      <template #extra>
-        <Button type="primary">Back Home</Button>
-      </template>
-    </Result>
-  </PageContainer>
+  <Space>
+    <RadioGroup @change="handleRadioGroup" :value="state">
+      <Radio value="read">只读</Radio>
+      <Radio value="edit">编辑</Radio>
+    </RadioGroup>
+    简约模式
+    <Switch :checked="plain" @change="handleSwitch" />
+  </Space>
+  <br />
+  <br />
+  <Descriptions :column="2">
+    <DescriptionsItem label="空字符串">
+      <ProFieldFC text="" mode="read" />
+    </DescriptionsItem>
+  </Descriptions>
 </template>
 
 <script lang="ts" setup>
-import { Button, Tag, Result } from 'ant-design-vue';
-import { PageContainer } from '@ant-design-vue/pro-layout';
+import { Descriptions, DescriptionsItem, Radio, RadioGroup, Space, Switch } from 'ant-design-vue';
+import type { ProFieldFCMode } from '@ant-design-vue/pro-utils';
+import { ProFieldFC } from '@ant-design-vue/pro-field';
+import { ref } from 'vue';
+const state = ref<ProFieldFCMode>('read');
+const plain = ref<boolean>(false);
+const handleRadioGroup = (event) => {
+  state.value = event.target.value as ProFieldFCMode
+}
+const handleSwitch = (checked: boolean) => {
+  plain.value = checked
+}
 </script>

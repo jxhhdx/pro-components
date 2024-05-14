@@ -1,6 +1,6 @@
 <template>
-  <demo-sort>
-    <!-- <basic /> -->
+  <demo-sort :cols="1">
+    <basic />
   </demo-sort>
 </template>
 
@@ -8,13 +8,13 @@
 import { defineComponent } from 'vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
-// import Basic from './basic.vue';
+import Basic from './basic.vue';
 
 export default defineComponent({
   CN,
   US,
   components: {
-    // Basic,
+    Basic,
   },
 });
 </script>
