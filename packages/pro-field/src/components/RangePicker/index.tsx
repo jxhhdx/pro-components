@@ -96,7 +96,7 @@ const FieldRangePicker = defineComponent({
 });
 
 FieldRangePicker.install = (app: App) => {
-  app.component(FieldRangePicker.name, FieldRangePicker);
+  app.component(FieldRangePicker.name as string, FieldRangePicker);
   return app;
 };
 

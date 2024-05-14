@@ -169,7 +169,7 @@ const FieldSelect = defineComponent({
 });
 
 FieldSelect.install = (app: App) => {
-  app.component(FieldSelect.name, FieldSelect);
+  app.component(FieldSelect.name as string, FieldSelect);
   return app;
 };
 

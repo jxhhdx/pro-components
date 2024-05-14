@@ -80,7 +80,7 @@ const FieldRadio = defineComponent({
 });
 
 FieldRadio.install = (app: App) => {
-  app.component(FieldRadio.name, FieldRadio);
+  app.component(FieldRadio.name as string, FieldRadio);
   return app;
 };
 

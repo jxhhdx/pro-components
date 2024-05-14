@@ -47,7 +47,7 @@ const FieldPassword = defineComponent({
 });
 
 FieldPassword.install = (app: App) => {
-  app.component(FieldPassword.name, FieldPassword);
+  app.component(FieldPassword.name as string, FieldPassword);
   return app;
 };
 

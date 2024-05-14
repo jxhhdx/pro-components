@@ -82,7 +82,7 @@ const FieldTimeRangePicker = defineComponent({
 });
 
 FieldTimeRangePicker.install = (app: App) => {
-  app.component(FieldTimeRangePicker.name, FieldTimeRangePicker);
+  app.component(FieldTimeRangePicker.name as string, FieldTimeRangePicker);
   return app;
 };
 

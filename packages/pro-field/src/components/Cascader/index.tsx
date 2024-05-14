@@ -1,20 +1,7 @@
 import { defineComponent, type App, DefineComponent, Plugin } from 'vue';
-import dayjs from 'dayjs';
-import { fieldDatePickerProps, FieldDatePickerProps } from './types';
-import { DatePicker } from 'ant-design-vue';
+import { field______Props, Field______Props } from './types';
 import { getSlot } from '@ant-design-vue/pro-utils';
 import type { VueNode } from 'ant-design-vue/lib/_util/type';
-
-const formatDate = (text: any, format: any) => {
-  if (!text) {
-    return '-';
-  }
-  if (typeof format === 'function') {
-    return format(dayjs(text));
-  } else {
-    return dayjs(text).format(format || 'YYYY-MM-DD');
-  }
-};
 
 export const slots = [
   'suffixIcon',
@@ -27,10 +14,10 @@ export const slots = [
   'monthCellRender',
 ];
 
-const FieldDatePicker = defineComponent({
-  name: 'FieldDatePicker',
+const Field______ = defineComponent({
+  name: 'Field______',
   inheritAttrs: false,
-  props: fieldDatePickerProps,
+  props: field______Props,
   slots,
   setup(props, { slots }) {
     const suffixIcon = getSlot<() => VueNode>(slots, props.fieldProps as Record<string, any>, 'suffixIcon');
@@ -54,31 +41,14 @@ const FieldDatePicker = defineComponent({
       const { placeholder, format } = fieldProps || {};
 
       if (mode === 'read') {
-        const dom = formatDate(text, format);
+        const dom = "";
         if (render) {
           return render(text, { mode, ...fieldProps }, <>{dom}</>);
         }
         return <>{dom}</>;
       }
       if (mode === 'edit' || mode === 'update') {
-        const dom = (
-          <DatePicker
-            v-slots={{
-              suffixIcon,
-              prevIcon,
-              nextIcon,
-              superPrevIcon,
-              superNextIcon,
-              renderExtraFooter,
-              dateRender,
-              monthCellRender,
-            }}
-            {...fieldProps}
-            format={format}
-            placeholder={placeholder || '请选择'}
-            allowClear
-          />
-        );
+        const dom = ""
         if (renderFormItem) {
           return renderFormItem(text, { mode, ...fieldProps }, dom);
         }
@@ -89,9 +59,9 @@ const FieldDatePicker = defineComponent({
   },
 });
 
-FieldDatePicker.install = (app: App) => {
-  app.component(FieldDatePicker.name as string, FieldDatePicker);
+Field______.install = (app: App) => {
+  app.component(Field______.name as string, Field______);
   return app;
 };
 
-export default FieldDatePicker as DefineComponent<FieldDatePickerProps> & Plugin;
+export default Field______ as DefineComponent<Field______Props> & Plugin;
